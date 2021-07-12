@@ -1,6 +1,6 @@
 <template>
   <transition name="fade">
-    <div class="loader flex align-center justify-center" :class="{absolute:absolute}">
+    <div v-if="modelValue" class="loader flex align-center justify-center" :class="{absolute:absolute}">
       <div class="blur"></div>
       <svg class="relative" :style="{fill:fill}" id="loaderIcon1" xmlns="http://www.w3.org/2000/svg"
            xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -26,8 +26,9 @@
 
 <script>
 export default {
-  name: "SuiLoading",
+  name: "VbLoading",
   props: {
+    modelValue:Boolean,
     absolute: Boolean,
     fill: {
       type: String,

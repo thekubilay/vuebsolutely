@@ -6,7 +6,7 @@ import {VbButton, VbDialog, VbLoading, VbCheckbox} from "@/entry.esm";
 
 export default defineComponent({
   name: 'ServeDev',
-  components: {VbDialog, VbButton, VbCheckbox},
+  components: {VbDialog, VbButton, VbCheckbox, VbLoading},
   setup(){
     const load = ref(false)
     return{load}
@@ -16,7 +16,9 @@ export default defineComponent({
 
 <template>
   <div id="app">
-    <vb-dialog large v-model="load" title="some title" radius="10" />
+    <vb-dialog medium v-model="load" title="some title" radius="10">
+      <vb-loading absolute v-model="load" />
+    </vb-dialog>
 
     <vb-button @click="load = !load"
                width="300px" bg-color="blue" text-color="white" radius="35" >test</vb-button>
