@@ -8,6 +8,14 @@
   position: relative;
 }
 
+.block {
+  display: block;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
 .text-left {
   text-align: left;
 }
@@ -26,4 +34,17 @@
 }
 .lowercase {
   text-transform: lowercase;
+}
+
+.overflow-x-hidden {
+  overflow-x: hidden;
+}
+.overflow-y-hidden {
+  overflow-y: hidden;
+}
+.overflow-y {
+  overflow-y: scroll;
+}
+.overflow-x {
+  overflow-x: scroll;
 }

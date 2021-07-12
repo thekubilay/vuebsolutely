@@ -3,6 +3,7 @@ import Dev from './serve.vue';
 import "../src/assets/css/flex.css"
 import "../src/assets/css/reset.css"
 import "../src/assets/css/irregulars.css"
+import "../src/assets/css/transitions.css"
 import Vuebsolutely from '@/entry.esm';
 
 

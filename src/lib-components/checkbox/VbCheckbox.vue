@@ -1,29 +1,65 @@
 <template>
-  <div class="vb-checkbox">
-    <label class="container">
-      <input type="checkbox" checked="checked">
-      <span class="checkmark"></span>
-      <span class="text block">one</span>
+  <div class="vb-checkbox flex align-center">
+    <span class="title block"></span>
+    <label class="container flex align-center relative">
+      <input v-model="setCheck" type="checkbox" checked="checked">
+      <span class="checkmark flex align-center justify-center transition" :style="styles" :class="{active:modelValue}">
+        <transition name="fade">
+          <svg v-if="modelValue" fill="white" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 515.556 515.556" height="16px" viewBox="0 0 515.556 515.556" width="16px">
+            <path d="m0 274.226 176.549 176.886 339.007-338.672-48.67-47.997-290.337 290-128.553-128.552z"/></svg>
+        </transition>
+      </span>
+      <span v-if="text" class="context block">{{ text }}</span>
     </label>
   </div>
 </template>
 
 <script>
+import {computed, reactive, watch} from "vue";
+
 export default {
   name: "VbCheckbox",
   props:{
+    modelValue:[Boolean, String, Number],
+    text:String,
     width: String,
     height: String,
+    radius: Boolean,
+    color: String,
+
+  },
+  setup(props, {emit}){
+    const styles = reactive({
+      borderRadius: props.radius ? "8px" : false
+    })
+    watch(() => props.radius, (val) => {
+      styles.borderRadius = val ? "8px" : false
+    })
+
+    const setCheck = computed({
+      set(val){
+        emit("update:modelValue", val)
+      },
+      get(){
+        return props.modelValue
+      }
+    })
+
+
+    return {
+      styles, setCheck
+    }
   }
 }
 </script>
 
 <style>
-.vb-checkbox > .container {
-  display: block;
-  position: relative;
+.vb-checkbox {
+  min-height: 34px;
+}
+.vb-checkbox > label.container {
+  height: 26px;
   padding-left: 35px;
-  margin-bottom: 12px;
   cursor: pointer;
   font-size: 22px;
   -webkit-user-select: none;
@@ -31,44 +67,29 @@ export default {
   -ms-user-select: none;
   user-select: none;
 }
-.vb-checkbox > .container input {
+.vb-checkbox > label.container > input {
   position: absolute;
   opacity: 0;
   cursor: pointer;
   height: 0;
   width: 0;
 }
-.vb-checkbox > .container > .checkmark {
+.vb-checkbox > label.container > .checkmark {
   position: absolute;
   top: 0;
   left: 0;
-  height: 25px;
-  width: 25px;
+  height: 22px;
+  width: 22px;
+  border: 2px solid #eee;
+}
+.vb-checkbox > label.container > .checkmark.active {
+  background-color: #0652DD;
+  border-color: #0652DD;
+}
+.vb-checkbox > label.container:hover > .checkmark {
   background-color: #eee;
 }
-.vb-checkbox > .container:hover > input ~ .checkmark {
-  background-color: #ccc;
-}
-.vb-checkbox > .container > input:checked ~ .checkmark {
-  background-color: #2196F3;
-}
-.checkmark:after {
-  content: "";
-  position: absolute;
-  display: none;
-}
-.vb-checkbox > .container > input:checked ~ .checkmark:after {
-  display: block;
-}
-.vb-checkbox > .container > .checkmark:after {
-  left: 9px;
-  top: 5px;
-  width: 5px;
-  height: 10px;
-  border: solid white;
-  border-width: 0 3px 3px 0;
-  -webkit-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  transform: rotate(45deg);
+.vb-checkbox > label.container > span.context {
+  font-size: .8rem;
 }
 </style>
