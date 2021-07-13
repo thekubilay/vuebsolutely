@@ -54,7 +54,10 @@ export default {
       emit("update:modelValue", false)
     }
 
-    onClickOutside(state, () => emit("update:modelValue", false))
+    onClickOutside(state, () => {
+      console.log("ok")
+      emit("update:modelValue", false)
+    })
 
     watch(() => props.radius, (val) => {
       styles.borderRadius = val ? val+"px" : false

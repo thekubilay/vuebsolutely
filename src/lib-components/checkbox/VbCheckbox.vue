@@ -2,7 +2,7 @@
   <div class="vb-checkbox flex align-center">
     <span class="title block"></span>
     <label class="container flex align-center relative">
-      <input v-model="setCheck" type="checkbox" checked="checked">
+      <input v-model="setCheck" type="checkbox">
       <span class="checkmark flex align-center justify-center transition" :style="styles" :class="{active:modelValue}">
         <transition name="fade">
           <svg v-if="modelValue" fill="white" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 515.556 515.556" height="16px" viewBox="0 0 515.556 515.556" width="16px">
@@ -21,6 +21,7 @@ export default {
   name: "VbCheckbox",
   props:{
     modelValue:[Boolean, String, Number],
+    val:Boolean,
     text:String,
     width: String,
     height: String,
@@ -58,7 +59,7 @@ export default {
   min-height: 34px;
 }
 .vb-checkbox > label.container {
-  height: 26px;
+  height: 24px;
   padding-left: 35px;
   cursor: pointer;
   font-size: 22px;
@@ -78,8 +79,8 @@ export default {
   position: absolute;
   top: 0;
   left: 0;
-  height: 22px;
-  width: 22px;
+  height: 20px;
+  width: 20px;
   border: 2px solid #eee;
 }
 .vb-checkbox > label.container > .checkmark.active {
