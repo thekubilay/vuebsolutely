@@ -20,9 +20,11 @@
   },
   "dependencies": {
     "@vueuse/core": "^5.1.3",
+    "css-select": "^4.1.3",
     "css-what": "^5.0.1",
     "glob-parent": "^6.0.0",
-    "globby": "^11.0.4"
+    "globby": "^11.0.4",
+    "vuebsolutely": "^1.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",

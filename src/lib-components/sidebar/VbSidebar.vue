@@ -1,8 +1,18 @@
 <template>
-    <div class="container"></div>
+    <div class="container height-eighty width-normal"
+        :class="[right?'border-radius-rightbar':'border-radius-leftbar',
+                 right?'position-right':'position-left',
+                 hoverExpand?'hover':false,
+                 reduce?'mini':'normal']" 
+        :style="styles">
+        <div class="">
+            <slot></slot>
+        </div>
+    </div>
 </template>
 
 <script>
+import { reactive } from '@vue/reactivity'
 // import {ref} from "vue";
 
 export default{
@@ -12,54 +22,24 @@ export default{
     // },
     props : {
         modelValue: Object,
-        open: {
-            Type: Boolean,
-            default: false
-        },
-        absolute : {
-            Type: Boolean,
-            default: false
-        },
-        relative : {
-            Type: Boolean,
-            default: false
-        },
-        reduce : {
-            Type: Boolean,
-            default: false
-        },
-        hoverExpand : {
-            Type: Boolean,
-            default: false
-        },
-        sqaure : {
-            Type: Boolean,
-            default: false
-        },
-        notShadow : {
-            Type: Boolean,
-            default: false
-        },
-        textWhite : {
-            Type: Boolean,
-            default: false
-        },
-        notLineActive : {
-            Type: Boolean,
-            default: false
-        },
+        open: Boolean,
+        absolute : Boolean,
+        relative : Boolean,
+        reduce : Boolean,
+        hoverExpand : Boolean,
+        sqaure : Boolean,
+        notShadow : Boolean,
+        textWhite : Boolean,
+        notLineActive : Boolean,
         background : {
             Type: String,
-            default: false
+            default: "#f4f4f4"
         },
         sidebarItemTo : {
             Type: String,
             default: false
         },
-        sidebarItemHref : {
-            Type: Boolean,
-            default: false
-        },
+        sidebarItemHref : Boolean,
         right : {
             Type: Boolean,
             require : true
@@ -80,18 +60,57 @@ export default{
         
     },
     setup(props) {
-        const open = props.open
+
+        const styles = reactive({
+            backgroundColor: props.background,
+            
+
+        })
+        
         
         return {
-            open
+            styles,
         }
     },
 }
 </script>
 <style scoped>
 
-.container{
-    background-color: aquamarine;
+.container {
+    display: flex;
+    position: absolute;
+    z-index: 100;
+    transition: 0.3s;
+    top: 10px;
+}
+.normal{
+    width: 200px;
+    padding: 10px;
+}
+.mini{
+    width: 50px;
+    padding: 5px;
+}
+.height-eighty {
+    height: 80%;
+}
+
+.position-left {
+    left: 0px;
+}
+.position-right {
+    right: 0px;
+}
+.border-radius-leftbar {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+.border-radius-rightbar {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+.hover:hover{
+    width: 200px;
 }
 </style>
 
