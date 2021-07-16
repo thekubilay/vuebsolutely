@@ -21,7 +21,9 @@ export default{
 
     // },
     props : {
-        modelValue: Object,
+        height : String,
+
+        modelValue : Object,
         open: Boolean,
         absolute : Boolean,
         relative : Boolean,
@@ -31,6 +33,10 @@ export default{
         notShadow : Boolean,
         textWhite : Boolean,
         notLineActive : Boolean,
+        textColor : {
+            Type : String,
+            default: "#"
+        },
         background : {
             Type: String,
             default: "#f4f4f4"
@@ -63,8 +69,12 @@ export default{
 
         const styles = reactive({
             backgroundColor: props.background,
-            
-
+            height: props.height+'px',
+            color: props.textColor,
+            borderWidth: props.border ? props.border+"px" : false,
+            borderColor: props.border ? props.bgColor : false,
+            borderStyle: props.border && props.dashed ? "dashed" : +"solid",
+            borderRadius: props.radius ? props.radius+"px" : false,
         })
         
         

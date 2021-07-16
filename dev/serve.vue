@@ -1,6 +1,7 @@
 <template>
   <div id="app" style="height: 100vh" class="flex-column align-center justify-center">
     <vb-select v-model="container" title="物件名" radius="7px" width="200px" :options="options" />
+    <vb-dialog></vb-dialog>
   </div>
 </template>
 

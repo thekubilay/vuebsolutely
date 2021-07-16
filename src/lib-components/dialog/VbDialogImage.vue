@@ -1,5 +1,5 @@
 <template>
-  <transition :name="animation">
+  <transition :name="animation"> 
     <div class="vb-dialog flex align-center justify-center" v-if="modelValue" :class="{absolute:absolute}">
       <div class="blur"></div>
       <div ref="state" class="window" :class="sizeClass" :style="styles">
@@ -37,6 +37,8 @@ export default {
       type:String,
       default:"fade",
     },
+    directions: Boolean,
+    images : [Array,String],
     position:String,
     title:String,
     absolute:Boolean,
