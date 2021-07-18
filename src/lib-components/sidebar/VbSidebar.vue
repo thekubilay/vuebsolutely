@@ -16,7 +16,7 @@ import { reactive } from '@vue/reactivity'
 // import {ref} from "vue";
 
 export default{
-    name : "Sidebar",
+    name : "VbSidebar",
     // components : {
 
     // },

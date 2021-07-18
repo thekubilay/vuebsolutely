@@ -37,8 +37,7 @@ export default {
       type:String,
       default:"fade",
     },
-    directions: Boolean,
-    images : [Array,String],
+
     position:String,
     title:String,
     absolute:Boolean,
@@ -65,11 +64,7 @@ export default {
       styles.borderRadius = val ? val+"px" : false
     })
 
-    watch(() => props.images, (val) => {
-      
-    }
-
-    )
+    
 
     const sizeClass = computed(() => {
       return {
