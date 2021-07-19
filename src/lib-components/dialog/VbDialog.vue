@@ -18,7 +18,7 @@
           <slot v-if="!images">
 
           </slot>
-          <vb-dialog-image v-else :images="images">
+          <vb-dialog-image v-else :images="images" :directions="directions">
             {{"hello"}}
           </vb-dialog-image>
         </div>
@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import {computed, reactive, ref, watch} from "vue";
+import {computed, onMounted, reactive, ref, watch} from "vue";
 import { onClickOutside } from '@vueuse/core'
 import VbButton from "@/lib-components/button/VbButton";
 
@@ -43,6 +43,7 @@ export default {
       default:"fade",
     },
     images:[Array, String],
+    directions:Boolean,
     position:String,
     title:String,
     absolute:Boolean,
@@ -56,6 +57,7 @@ export default {
     const styles = reactive({
       borderRadius: props.radius ? props.radius+"px" : false
     })
+
     const close = () => {
       emit("update:modelValue", false)
     }
@@ -84,6 +86,7 @@ export default {
         "justify-center": (props.position || props.position === "center") ,
       }
     })
+
 
     return {
       state, sizeClass, positionClass, styles,

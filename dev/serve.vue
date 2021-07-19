@@ -2,7 +2,7 @@
   <div id="app" style="height: 100vh" class="flex-column align-center justify-center">
     <vb-button @click="showDialog">Click me</vb-button>
     <vb-select v-model="container" title="物件名" radius="7px" width="200px" :options="options" />
-    <vb-dialog medium images="logo.png" v-model="load" title="Imga" radius="10">
+    <vb-dialog medium :images="images" v-model="load" title="Imga" radius="10" directions>
 
     </vb-dialog>
     
@@ -41,12 +41,12 @@ export default defineComponent({
       },
       {
         id : 2,
-        src : "logo.png",
+        src : "highpic.png",
         alt : "description2"
       },
       {
         id : 3,
-        src : "logo.png",
+        src : "widepic.png",
         alt : "description3"
       }]
 
