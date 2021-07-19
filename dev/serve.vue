@@ -2,8 +2,8 @@
   <div id="app" style="height: 100vh" class="flex-column align-center justify-center">
     <vb-button @click="showDialog">Click me</vb-button>
     <vb-select v-model="container" title="物件名" radius="7px" width="200px" :options="options" />
-    <vb-dialog medium v-model="load" title="some title" radius="10">
-      <vb-dialog-image :images="images" :directions="true"></vb-dialog-image>
+    <vb-dialog medium images="logo.png" v-model="load" title="Imga" radius="10">
+
     </vb-dialog>
     
   </div>
@@ -36,17 +36,17 @@ export default defineComponent({
     const images = ref([
       {
         id : 1,
-        src : "~@/assets/logo.png",
+        src : "logo.png",
         alt : "description11"
       },
       {
         id : 2,
-        src : "@/assets/logo.png",
+        src : "logo.png",
         alt : "description2"
       },
       {
         id : 3,
-        src : "@/assets/logo.png",
+        src : "logo.png",
         alt : "description3"
       }]
 

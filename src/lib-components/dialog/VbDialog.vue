@@ -4,7 +4,7 @@
       <div class="blur"></div>
       <div ref="state" class="window" :class="sizeClass" :style="styles">
         <div class="header flex align-center" :class="positionClass">
-          <h3 v-if="title" class="title capitalize">{{title}}</h3>
+          <h3 v-if="title && !images" class="title capitalize">{{title}}</h3>
           <vb-button @click="close()" class="close" width="28px" height="28px" radius="8">
             <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="12px" height="12px" viewBox="0 0 357 357"
                  xml:space="preserve">
@@ -15,7 +15,12 @@
 
         <!--   context imports by slot   -->
         <div class="body">
-          <slot></slot>
+          <slot v-if="!images">
+
+          </slot>
+          <vb-dialog-image v-else :images="images">
+            {{"hello"}}
+          </vb-dialog-image>
         </div>
       </div>
     </div>
@@ -37,7 +42,7 @@ export default {
       type:String,
       default:"fade",
     },
-
+    images:[Array, String],
     position:String,
     title:String,
     absolute:Boolean,
