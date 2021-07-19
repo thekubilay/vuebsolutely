@@ -41,7 +41,6 @@ export default {
   name: "VbDialogImage",
   
   props: {
-    activeImage: String,
     directions: Boolean,
     images: [String, Array],
  
@@ -52,21 +51,18 @@ export default {
       setWH
     } = helpers()
 
-    const activeIndex = ref(0)
-    const activeImage = ref("");
+    const activeIndex = ref(0);//the index of the image in an array
+    const activeImage = ref("");//is a string to the image
 
     onMounted(() => {
       init()
     })
  
-
     const getImgUrl =(img)=>{
       return require('../../assets/'+img)
     }
 
     const isLoaded = () => {
-      console.log("ok")
-      console.log(image.value)
       setWH()
     }
 
@@ -146,6 +142,8 @@ export default {
 .active-image{
   width:100%;
   height:100%;
+  max-height: 100%;
+  max-width: 100%;
 }
 
 </style>

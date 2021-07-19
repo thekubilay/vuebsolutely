@@ -31,11 +31,12 @@
 import {computed, onMounted, reactive, ref, watch} from "vue";
 import { onClickOutside } from '@vueuse/core'
 import VbButton from "@/lib-components/button/VbButton";
+import VbDialogImage from "./VbDialogImage.vue"
 
 
 export default {
   name: "VbDialog",
-  components: {VbButton},
+  components: {VbButton,VbDialogImage},
   props: {
     modelValue: Boolean,
     animation:{
@@ -104,6 +105,7 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
+  max-height: 100%;
 }
 .vb-dialog > .blur {
   position: absolute;

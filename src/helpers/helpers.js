@@ -11,7 +11,6 @@ export default function (){
 
     const setWH = function(percentage="100%"){
         resized.visibility = "hidden"
-        console.log("ugoita")
 
         console.log(image.value.width, image.value.height)
 

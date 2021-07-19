@@ -13,7 +13,7 @@
 <script>
 import {ref, defineComponent, watch} from 'vue';
 import {VbButton, VbDialog,VbLoading, VbCheckbox, VbSelect} from "@/entry.esm";
-import {VbDialogImage} from "../src/lib-components/dialog/VbDialogImage.vue"
+
 
 
 // Uncomment import and local "components" registration if library is not registered globally.
@@ -21,7 +21,7 @@ import {VbDialogImage} from "../src/lib-components/dialog/VbDialogImage.vue"
 
 export default defineComponent({
   name: 'ServeDev',
-  components: {VbDialog,VbDialogImage, VbButton, VbCheckbox, VbLoading, VbSelect},
+  components: {VbDialog, VbButton, VbCheckbox, VbLoading, VbSelect},
   setup(){
     const load = ref(true)
     const container = ref([])
