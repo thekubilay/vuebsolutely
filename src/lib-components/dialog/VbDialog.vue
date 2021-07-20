@@ -44,6 +44,8 @@ export default {
       default:"fade",
     },
     images:[Array, String],
+    width: String,
+    height: String,
     directions:Boolean,
     position:String,
     title:String,
@@ -56,7 +58,9 @@ export default {
   setup(props, {emit}) {
     const state = ref(props.modelValue)
     const styles = reactive({
-      borderRadius: props.radius ? props.radius+"px" : false
+      borderRadius: props.radius ? props.radius+"px" : false,
+      width: props.width ? props.width+"px" :false,
+      height: props.height ? props.height+"px" :false,
     })
 
     const close = () => {
@@ -71,8 +75,6 @@ export default {
     watch(() => props.radius, (val) => {
       styles.borderRadius = val ? val+"px" : false
     })
-
-    
 
     const sizeClass = computed(() => {
       return {
@@ -162,6 +164,6 @@ export default {
 }
 .vb-dialog > .window > .body {
   padding: 14px;
-  height: calc(100% - 50px);
+  height: calc(100% - 78px);
 }
 </style>
