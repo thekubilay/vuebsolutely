@@ -2,17 +2,16 @@
   <div id="app" style="height: 100vh" class="flex-column align-center justify-center">
     <vb-button @click="showDialog">Click me</vb-button>
     <vb-select v-model="container" title="物件名" radius="7px" width="200px" :options="options" />
-    <vb-dialog :images="images" v-model="load" title="Imga" radius="10" directions height="500">
-
+    <vb-dialog medium v-model="load" title="title" radius="10px" width="500px" height="400px">
+      <vb-image :src="images[1].src" />
     </vb-dialog>
-    
   </div>
 </template>
 
 
 <script>
 import {ref, defineComponent, watch} from 'vue';
-import {VbButton, VbDialog,VbLoading, VbCheckbox, VbSelect} from "@/entry.esm";
+import {VbButton, VbDialog,VbLoading, VbCheckbox, VbSelect, VbImage, VbImageSlider} from "@/entry.esm";
 
 
 
@@ -21,7 +20,7 @@ import {VbButton, VbDialog,VbLoading, VbCheckbox, VbSelect} from "@/entry.esm";
 
 export default defineComponent({
   name: 'ServeDev',
-  components: {VbDialog, VbButton, VbCheckbox, VbLoading, VbSelect},
+  components: {VbDialog, VbButton, VbCheckbox, VbLoading, VbSelect, VbImage, VbImageSlider},
   setup(){
     const load = ref(true)
     const container = ref([])
@@ -36,18 +35,15 @@ export default defineComponent({
     const images = ref([
       {
         id : 1,
-        src : "logo.png",
-        alt : "description11"
+        src : require("../src/assets/logo.png"),
       },
       {
         id : 2,
-        src : "highpic.png",
-        alt : "description2"
+        src : require("../src/assets/highpic.png"),
       },
       {
         id : 3,
-        src : "widepic.png",
-        alt : "description3"
+        src : require("../src/assets/widepic.png"),
       }]
 
     )
