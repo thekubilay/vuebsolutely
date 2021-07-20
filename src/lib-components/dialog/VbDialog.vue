@@ -1,10 +1,10 @@
 <template>
   <transition :name="animation">
-    <div class="vb-dialog flex align-center justify-center" v-if="modelValue" :class="{absolute:absolute}">
+    <div class="vb-dialog flex align-center justify-center overflow-y-hidden" v-if="modelValue" :class="{absolute:absolute}">
       <div class="blur"></div>
       <div ref="state" class="window" :class="sizeClass" :style="styles">
-        <div class="header flex align-center" :class="positionClass">
-          <h3 v-if="title && !images" class="title capitalize">{{title}}</h3>
+        <div class="header flex align-center" :class="positionClass" :style="{position: image ? 'absolute' :false, width:'calc(100% - 28px)'}">
+          <h3 v-if="title" class="title capitalize">{{title}}</h3>
           <vb-button @click="close()" class="close" width="28px" height="28px" radius="8">
             <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="12px" height="12px" viewBox="0 0 357 357"
                  xml:space="preserve">
@@ -14,13 +14,8 @@
         </div>
 
         <!--   context imports by slot   -->
-        <div class="body">
-          <slot v-if="!images">
-
-          </slot>
-          <vb-dialog-image v-else :images="images" :directions="directions">
-            {{"hello"}}
-          </vb-dialog-image>
+        <div class="body" :style="{height: image?'100%':false}">
+          <slot></slot>
         </div>
       </div>
     </div>
@@ -28,22 +23,23 @@
 </template>
 
 <script>
-import {computed, onMounted, reactive, ref, watch} from "vue";
+import {computed, reactive, ref, watch} from "vue";
 import { onClickOutside } from '@vueuse/core'
 import VbButton from "@/lib-components/button/VbButton";
-import VbDialogImage from "./VbDialogImage.vue"
 
 
 export default {
   name: "VbDialog",
-  components: {VbButton,VbDialogImage},
+  components: {VbButton},
   props: {
     modelValue: Boolean,
     animation:{
       type:String,
       default:"fade",
     },
-    images:[Array, String],
+    width: String,
+    height: String,
+    image: Boolean,
     directions:Boolean,
     position:String,
     title:String,
@@ -56,7 +52,9 @@ export default {
   setup(props, {emit}) {
     const state = ref(props.modelValue)
     const styles = reactive({
-      borderRadius: props.radius ? props.radius+"px" : false
+      width: props.width,
+      height: props.height,
+      borderRadius: props.radius ? props.radius : false
     })
 
     const close = () => {
@@ -64,15 +62,12 @@ export default {
     }
 
     onClickOutside(state, () => {
-      console.log("ok")
       emit("update:modelValue", false)
     })
 
     watch(() => props.radius, (val) => {
-      styles.borderRadius = val ? val+"px" : false
+      styles.borderRadius = val
     })
-
-    
 
     const sizeClass = computed(() => {
       return {
@@ -124,8 +119,7 @@ export default {
   width: 524px;
   box-shadow:
       0 0px 19.7px -19px rgba(0, 0, 0, 0.06),
-      0 0px 157px -19px rgba(0, 0, 0, 0.20)
-;
+      0 0px 157px -19px rgba(0, 0, 0, 0.20);
 
 
 
@@ -136,12 +130,14 @@ export default {
 .vb-dialog > .window.medium {
   width: 524px;
   height: auto;
+  max-height: 600px;
 }
 .vb-dialog > .window.large {
   width: 100%;
   height: 100%;
 }
 .vb-dialog > .window > .header {
+  width: 100%;
   position: relative;
   height: 50px;
   padding: 0 14px;
@@ -161,7 +157,6 @@ export default {
   fill: #3d3d3d;
 }
 .vb-dialog > .window > .body {
-  padding: 14px;
   height: calc(100% - 50px);
 }
 </style>

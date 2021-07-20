@@ -1,7 +1,7 @@
 <template>
   <transition :name="animation">
     <div class="vb-select relative transition" :style="styles" :class="{active:state}">
-      <span v-if="title" class="title block">{{title}}</span>
+      <span v-if="title" class="title text-left block">{{title}}</span>
 
       <span class="placeholder flex align-center pointer relative"
             :class="{active:state, 'error':!isValid, filter:state && filter}"
@@ -119,13 +119,14 @@ export default {
     onClickOutside(state, (event) => {
       if (event){
         setTimeout(() => {
-          state.value = false
+          if (event.target.localName !== "input") {
+            state.value = false
+          }
         }, 100)
       }
     })
 
     watch(() => props.modelValue, (val) => {
-      console.log(val)
       setDefaultSelectedItem(val)
       if (!props.multiple){
         state.value = false
