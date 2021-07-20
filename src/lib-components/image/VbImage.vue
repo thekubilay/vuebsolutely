@@ -1,5 +1,5 @@
 <template>
-  <img class="vb-image" @click="isLoaded" ref="image" :src="src" :style="resized" alt="image">
+  <img class="vb-image" @load="isLoaded" ref="image" :src="src" :style="resized" alt="image">
 </template>
 
 <script>
@@ -11,26 +11,41 @@ export default {
     src:String,
     width:{
       type:String,
-      default:"auto",
     },
     height:{
       type:String,
-      default:"auto",
     }
   },
   setup(props,){
     const {image, resized, useSizer} = useImageResizeHandler()
 
     onMounted(() => {
-      useSizer(image.value, "100%")
+      if (!props.width && !props.height) {
+        useSizer(image.value, "100%")
+      }
+      else {
+        resized.width = props.width
+        resized.height = props.height
+      }
     })
 
     const isLoaded = () => {
-      useSizer(image.value, "100%")
+      if (!props.width && !props.height)
+        useSizer(image.value, "100%")
+      else {
+        resized.width = props.width
+        resized.height = props.height
+      }
+
     }
 
     watch(() => props.src, (val) => {
-      useSizer(val)
+      if (!props.width && !props.height)
+        useSizer(image.value, "100%")
+      else {
+        resized.width = props.width
+        resized.height = props.height
+      }
     })
 
     watch(() => props.width, (val) => {
