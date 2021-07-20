@@ -16,7 +16,7 @@
       </div>
       
       <div v-if="checkArray" class="image-barscroll flex overflow-x">
-        <div v-for="(image,idx) in images" :key="idx" class="image pointer" 
+        <div v-for="(image,idx) in images" :key="idx" class="image-mini pointer flex justify-center align-center" 
             @click="setActiveImg(idx)">
           <img :src="getImgUrl(image.src)" :alt="image.src" >
         </div>
@@ -119,31 +119,35 @@ export default {
 .direction{
   padding: 10px;
 }
+.images-container{
+  height: 100%;
+  width: 100%;
+}
 .image-content{
   width: 100%;
+  height: 100%;
   background-color: slategrey;
   border-radius: 10px;
 }
 .image-barscroll{
+  height:15%;
   background-color: #f1f1f1;
 }
 
-.image {
+.image-mini {
   margin: 5px 5px 15px 5px;
   border: 2px solid white;
   border-radius: 5px;
   height: 36px;
   width: 36px;
 }
-.image > img{
+.image-mini > img{
   max-height: 100%;
   max-width: 100%;
 }
 .active-image{
+  height: 85%;
   width:100%;
-  height:100%;
-  max-height: 100%;
-  max-width: 100%;
 }
 
 </style>
