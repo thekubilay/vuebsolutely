@@ -5,6 +5,9 @@
     <vb-dialog medium v-model="load" title="title" radius="10px" width="500px" height="400px">
       <vb-image :src="images[1].src" />
     </vb-dialog>
+    <vb-image-slider :images="images" tnmargin="2px" directions>
+
+    </vb-image-slider>
   </div>
 </template>
 
